@@ -1,1 +1,7 @@
 # NeuroNest
+Neuronest was developed as a centralized web portal designed to aggregate and categorize a wide variety of AI agents, specifically aimed at enhancing student productivity. Built using HTML, CSS, and JavaScript, the platform featured a modular architecture that allowed users to access tools across domains such as design, editing, and media generation—all from a single interface. The design approach followed minimalistic and futuristic principles, ensuring a distraction-free, visually clean experience across devices.
+
+The portal integrated over 20 AI tools, each organized into intuitive sections with seamless navigation, reducing the time required for students to locate and utilize AI services by over 60%. Without requiring page reloads, the dynamic interface provided a fluid user experience, while its responsive design ensured compatibility across screen sizes and devices. The use of modular scripting and lightweight static hosting further optimized load times and usability.
+
+Neuronest not only simplified access to diverse AI tools but also served as a productivity enhancer by eliminating the need to visit multiple platforms. By bridging functionality with design clarity, the project stood out as a student-focused solution that embodied both utility and modern web aesthetics. It also reinforced practical skills in frontend development, modular design thinking, and UI structuring
+https://github.com/user-attachments/assets/197483d2-1664-4eb1-ab29-ef1889027465

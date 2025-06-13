@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub for Students</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        }
+
+        /* Parallax Sections */
+        .parallax-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .parallax-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 1200px;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #6e48aa;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .cta-button:hover {
+            background-color: #9d50bb;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* Design Tools Section */
+        #design-tools {
+            background-color: #f9f9f9;
+            min-height: 100vh;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #6e48aa;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6e48aa, #9d50bb);
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            overflow-x: auto;
+            padding: 30px 0;
+            scroll-snap-type: x mandatory;
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        .tool-card {
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .tool-image {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tool-content {
+            padding: 20px;
+        }
+
+        .tool-name {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .tool-category {
+            display: inline-block;
+            background: #6e48aa;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .tool-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .tool-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(to right, #6e48aa, #9d50bb);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .tool-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.3);
+        }
+
+        /* Study Tools Section */
+        #study-tools {
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .study-tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .study-tool-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .study-tool-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .study-tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .study-tool-name {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Creative Tools Section */
+        #creative-tools {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+
+        .creative-tools-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .creative-tool-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .creative-tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .creative-tool-image {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .creative-tool-content {
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        nav.scrolled .logo {
+            color: #6e48aa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: #333;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+        }
+
+        nav.scrolled .nav-links a::after {
+            background: #6e48aa;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">AI Tools Hub</div>
+        <div class="nav-links">
+            <a href="#hero">Home</a>
+            <a href="#design-tools">Design Tools</a>
+            <a href="#study-tools">Study Tools</a>
+            <a href="#creative-tools">Creative Tools</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="parallax-section" id="hero">
+        <div class="parallax-content">
+            <h1 class="hero-title">AI Tools for Students</h1>
+            <p class="hero-subtitle">Discover the best AI-powered tools to enhance your creativity, productivity, and learning experience</p>
+            <a href="#design-tools" class="cta-button">Explore Tools</a>
+        </div>
+        <div class="scroll-down">Scroll Down</div>
+    </section>
+
+    <!-- Design Tools Section -->
+    <section id="design-tools">
+        <h2 class="section-title">Design AI Tools</h2>
+        <div class="horizontal-scroll">
+            <!-- Tool 1 -->
+            <div class="tool-card">
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Midjourney" class="tool-image">
+                <div class="tool-content">
+                    <h3 class="tool-name">Midjourney</h3>
+                    <span class="tool-category">Image Generation</span>
+                    <p class="tool-description">AI-powered art generation tool that creates stunning images from text prompts. Perfect for concept art and creative projects.</p>
+                    <a href="https://www.midjourney.com" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 2 -->
+            <div class="tool-card">
+                <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="DALL-E" class="tool-image">
+                <div class="tool-content">
+                    <h3 class="tool-name">DALL-E 3</h3>
+                    <span class="tool-category">Image Generation</span>
+                    <p class="tool-description">OpenAI's advanced image generation model that creates realistic images and art from natural language descriptions.</p>
+                    <a href="https://openai.com/dall-e" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 3 -->
+            <div class="tool-card">
+                <img src="https://images.unsplash.com/photo-1620287343716-8e88ffad94a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Canva AI" class="tool-image">
+                <div class="tool-content">
+                    <h3 class="tool-name">Canva AI</h3>
+                    <span class="tool-category">Graphic Design</span>
+                    <p class="tool-description">AI-powered design tool that helps create professional graphics, presentations, and social media content easily.</p>
+                    <a href="https://www.canva.com/ai-tools/" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 4 -->
+            <div class="tool-card">
+                <img src="https://images.unsplash.com/photo-1626785774625-ddcd5475c789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Adobe Firefly" class="tool-image">
+                <div class="tool-content">
+                    <h3 class="tool-name">Adobe Firefly</h3>
+                    <span class="tool-category">Creative Suite</span>
+                    <p class="tool-description">Generative AI tools integrated into Adobe's creative suite for image generation, text effects, and more.</p>
+                    <a href="https://www.adobe.com/sensei/generative-ai/firefly.html" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 5 -->
+            <div class="tool-card">
+                <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Runway ML" class="tool-image">
+                <div class="tool-content">
+                    <h3 class="tool-name">Runway ML</h3>
+                    <span class="tool-category">Video Editing</span>
+                    <p class="tool-description">AI-powered video editing tool with features like green screen removal, motion tracking, and style transfer.</p>
+                    <a href="https://runwayml.com" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Tools Section -->
+    <section id="study-tools">
+        <h2 class="section-title" style="color: white;">Study AI Tools</h2>
+        <div class="study-tools-container">
+            <!-- Tool 1 -->
+            <div class="study-tool-card">
+                <div class="study-tool-icon">📚</div>
+                <h3 class="study-tool-name">ChatGPT</h3>
+                <p class="tool-description" style="color: rgba(255,255,255,0.8);">AI assistant that can help with research, essay writing, and explaining complex concepts.</p>
+                <a href="https://chat.openai.com" target="_blank" class="tool-link">Visit Website</a>
+            </div>
+            
+            <!-- Tool 2 -->
+            <div class="study-tool-card">
+                <div class="study-tool-icon">📝</div>
+                <h3 class="study-tool-name">Grammarly</h3>
+                <p class="tool-description" style="color: rgba(255,255,255,0.8);">AI-powered writing assistant that checks grammar, spelling, and style in real-time.</p>
+                <a href="https://www.grammarly.com" target="_blank" class="tool-link">Visit Website</a>
+            </div>
+            
+            <!-- Tool 3 -->
+            <div class="study-tool-card">
+                <div class="study-tool-icon">🧠</div>
+                <h3 class="study-tool-name">Quizlet AI</h3>
+                <p class="tool-description" style="color: rgba(255,255,255,0.8);">Smart flashcards and study tools that adapt to your learning style using AI.</p>
+                <a href="https://quizlet.com" target="_blank" class="tool-link">Visit Website</a>
+            </div>
+            
+            <!-- Tool 4 -->
+            <div class="study-tool-card">
+                <div class="study-tool-icon">📊</div>
+                <h3 class="study-tool-name">Wolfram Alpha</h3>
+                <p class="tool-description" style="color: rgba(255,255,255,0.8);">Computational knowledge engine that solves math problems and answers factual questions.</p>
+                <a href="https://www.wolframalpha.com" target="_blank" class="tool-link">Visit Website</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Tools Section -->
+    <section id="creative-tools">
+        <h2 class="section-title">Creative AI Tools</h2>
+        <div class="creative-tools-container">
+            <!-- Tool 1 -->
+            <div class="creative-tool-card">
+                <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Murf AI" class="creative-tool-image">
+                <div class="creative-tool-content">
+                    <h3 class="tool-name">Murf AI</h3>
+                    <span class="tool-category">Voice Generation</span>
+                    <p class="tool-description">AI voice generator that creates realistic voiceovers for presentations and videos.</p>
+                    <a href="https://murf.ai" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 2 -->
+            <div class="creative-tool-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Beautiful AI" class="creative-tool-image">
+                <div class="creative-tool-content">
+                    <h3 class="tool-name">Beautiful AI</h3>
+                    <span class="tool-category">Presentation Tool</span>
+                    <p class="tool-description">AI-powered presentation maker that designs slides automatically based on your content.</p>
+                    <a href="https://www.beautiful.ai" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 3 -->
+            <div class="creative-tool-card">
+                <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Boomy" class="creative-tool-image">
+                <div class="creative-tool-content">
+                    <h3 class="tool-name">Boomy</h3>
+                    <span class="tool-category">Music Generation</span>
+                    <p class="tool-description">Create original music tracks in seconds with AI, even without musical training.</p>
+                    <a href="https://boomy.com" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+            
+            <!-- Tool 4 -->
+            <div class="creative-tool-card">
+                <img src="https://images.unsplash.com/photo-1626785774703-974a71076c84?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Copy AI" class="creative-tool-image">
+                <div class="creative-tool-content">
+                    <h3 class="tool-name">Copy AI</h3>
+                    <span class="tool-category">Content Writing</span>
+                    <p class="tool-description">AI writing assistant that helps generate blog posts, social media content, and more.</p>
+                    <a href="https://www.copy.ai" target="_blank" class="tool-link">Visit Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const hero = document.getElementById('hero');
+            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.tool-card, .study-tool-card, .creative-tool-card').forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease-out';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
